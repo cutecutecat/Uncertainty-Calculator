@@ -101,28 +101,36 @@ double ensure(double uA,int num){
 }
 
 int main(void){
-    double item[20] = {0},A[2] = {0};
-    int num, max;
-    double aver, uA, uB = 0, St, uT,u;
-    printf("输入实验数据个数:\n");
-    scanf("%d",&num);
-    while(num < 3){
-        printf("实验数据必须不少于3，重新输入:\n");
+    while(1){
+        double item[20] = {0},A[2] = {0};
+        int num, max, i;
+        double aver, uA, uB = 0, St, uT,u;
+        printf("输入实验数据个数:\n");
         scanf("%d",&num);
+        while(num < 3){
+            printf("实验数据必须不少于3，重新输入:\n");
+            scanf("%d",&num);
+        }
+        aver = input(item,num);
+        max = findallMax(item,num);
+        St = calA(item,num,aver);
+        uA = St/sqrt(num);
+        uT = ensure(uA,num);
+        uB = calB();
+        system("cls");
+        printf("数据:\n");
+        for(i=0;i<num;i++){
+            printf("%.*lf\t", max, item[i]);
+        }
+        printf("\n\n");
+        printf("平均值:\nXa=(1/n)*(ΣXn)=%.*lf        <= %.*lf\n标准差:\nδ=√[Σ(Xn-Xa)^2/(n-1)]=%.*lf        <= %.*lf\nA类不确定度:\nuA=tp*[δ/√(n)]=%.*lf        <= %.*lf\n",max, aver, max+4, aver, max, uA, max+4, uA, max, uT, max+4, uT);
+        if(uB != 0){
+            u = sqrt(uT*uT+uB*uB);
+            printf("B类不确定度:\nuB=%.*lf        <= %.*lf\n合成不确定度:\nu=√(uA^2+uB^2)=%.*lf        <= %.*lf\n",max, uB, max+4, uB, max, u, max+4, u);
+        }
+        system("pause");
+        system("cls");
     }
-    aver = input(item,num);
-    max = findallMax(item,num);
-    St = calA(item,num,aver);
-    uA = St/sqrt(num);
-    uT = ensure(uA,num);
-
-    uB = calB();
-    printf("平均值:\nXa=(1/n)*(ΣXn)=%.*lf        <= %.*lf\n标准差:\nδ=√[Σ(Xn-Xa)^2/(n-1)]=%.*lf        <= %.*lf\nA类不确定度:\nuA=tp*[δ/√(n)]=%.*lf        <= %.*lf\n",max, aver, max+4, aver, max, uA, max+4, uA, max, uT, max+4, uT);
-    if(uB != 0){
-        u = sqrt(uT*uT+uB*uB);
-        printf("B类不确定度:\nuB=%.*lf        <= %.*lf\n合成不确定度:\nu=√(uA^2+uB^2)=%.*lf        <= %.*lf\n",max, uB, max+4, uB, max, u, max+4, u);
-    }
-    system("pause");
     return 0;
 }
 
