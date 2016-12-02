@@ -11,7 +11,7 @@ const double percentage[4][9] = {
 double input(double * item,int num){
     double aver;
     int i;
-    printf("è¾“å…¥å®éªŒæ•°æ®:\n");
+    printf("ÊäÈëÊµÑéÊı¾İ:\n");
     for(i=0;i<num;i++){
         scanf("%lf", item+i);
         aver += *(item+i);
@@ -58,18 +58,20 @@ double calA(double * item, int num, double aver){
 
 double calB(void){
     double p1, p2, c;
-    printf("è®¡ç®—Bç±»ä¸ç¡®å®šåº¦ï¼Œé”®å…¥ä»ªå™¨è¯¯å·®ï¼Œæ— éœ€è®¡ç®—é”®å…¥0(ç®€å•å¤„ç†ï¼Œé”®å…¥-1):\n");
+    printf("¼ÆËãBÀà²»È·¶¨¶È£¬¼üÈëÒÇÆ÷Îó²î£¬ÎŞĞè¼ÆËã¼üÈë0(¼òµ¥´¦Àí£¬¼üÈë-1):\n");
     scanf("%lf", &c);
     if(c == 0)
         return 0;
     else if(c == -1)
         c=0;
     p1 = c;
-    printf("ä»ªå™¨ä¸ºæ¨¡æ‹Ÿå¼è¯·é”®å…¥æœ€å°åˆ†åº¦ï¼Œæ•°å­—å¼é”®å…¥0ï¼š\n");
+    printf("ÒÇÆ÷ÎªÄ£ÄâÊ½Çë¼üÈë×îĞ¡·Ö¶È£¬Êı×ÖÊ½¼üÈë0£º\n");
     scanf("%lf", &p2);
-    if(p1 > 0)
+    if(p1 == 0)
+        return p2;
+    else
         p2 *=0.5;
-    printf("é€‰æ‹©ç½®ä¿¡ç³»æ•°ï¼š\n1=>3\n2=>âˆš3\n3=>âˆš6\n");
+    printf("Ñ¡ÔñÖÃĞÅÏµÊı£º\n1=>3\n2=>¡Ì3\n3=>¡Ì6\n");
     scanf("%lf", &c);
     switch((int)c){
     case 1:
@@ -88,7 +90,7 @@ double calB(void){
 double ensure(double uA,int num){
     int t;
     double uT;
-    printf("è®¡ç®—Aç±»ä¸ç¡®å®šåº¦ï¼Œé”®å…¥æ‰€éœ€æ¦‚ç‡:\n1=>0.68\n2=>0.90\n3=>0.95\n4=>0.99\n");
+    printf("¼ÆËãAÀà²»È·¶¨¶È£¬¼üÈëËùĞè¸ÅÂÊ:\n1=>0.68\n2=>0.90\n3=>0.95\n4=>0.99\n");
     scanf("%d",&t);
     if(num <= 10){
         uT = uA*percentage[t-1][num-3];
@@ -102,10 +104,10 @@ int main(void){
     double item[20] = {0},A[2] = {0};
     int num, max;
     double aver, uA, uB = 0, St, uT,u;
-    printf("è¾“å…¥å®éªŒæ•°æ®ä¸ªæ•°:\n");
+    printf("ÊäÈëÊµÑéÊı¾İ¸öÊı:\n");
     scanf("%d",&num);
     while(num < 3){
-        printf("å®éªŒæ•°æ®å¿…é¡»ä¸å°‘äº3ï¼Œé‡æ–°è¾“å…¥:\n");
+        printf("ÊµÑéÊı¾İ±ØĞë²»ÉÙÓÚ3£¬ÖØĞÂÊäÈë:\n");
         scanf("%d",&num);
     }
     aver = input(item,num);
@@ -115,10 +117,10 @@ int main(void){
     uT = ensure(uA,num);
 
     uB = calB();
-    printf("å¹³å‡å€¼:\n1/Xa=n*(Î£Xn)=%.*lf        <= %.*lf\næ ‡å‡†å·®:\nÎ´=âˆš[Î£(Xn-Xa)^2/(n-1)]=%.*lf        <= %.*lf\nAç±»ä¸ç¡®å®šåº¦:\nuA=tp*[Î´/âˆš(n)]=%.*lf        <= %.*lf\n",max, aver, max+4, aver, max, uA, max+4, uA, max, uT, max+4, uT);
+    printf("Æ½¾ùÖµ:\nXa=(1/n)*(¦²Xn)=%.*lf        <= %.*lf\n±ê×¼²î:\n¦Ä=¡Ì[¦²(Xn-Xa)^2/(n-1)]=%.*lf        <= %.*lf\nAÀà²»È·¶¨¶È:\nuA=tp*[¦Ä/¡Ì(n)]=%.*lf        <= %.*lf\n",max, aver, max+4, aver, max, uA, max+4, uA, max, uT, max+4, uT);
     if(uB != 0){
         u = sqrt(uT*uT+uB*uB);
-        printf("Bç±»ä¸ç¡®å®šåº¦:\nuB=%.*lf        <= %.*lf\nåˆæˆä¸ç¡®å®šåº¦:\nu=âˆš(uA^2+uB^2)=%.*lf        <= %.*lf\n",max, uB, max+4, uB, max, u, max+4, u);
+        printf("BÀà²»È·¶¨¶È:\nuB=%.*lf        <= %.*lf\nºÏ³É²»È·¶¨¶È:\nu=¡Ì(uA^2+uB^2)=%.*lf        <= %.*lf\n",max, uB, max+4, uB, max, u, max+4, u);
     }
     system("pause");
     return 0;
