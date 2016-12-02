@@ -115,7 +115,7 @@ int main(void){
     uT = ensure(uA,num);
 
     uB = calB();
-    printf("平均值:\n1/Xa=n*(ΣXn)=%.*lf        <= %.*lf\n标准差:\nδ=√[Σ(Xn-Xa)^2/(n-1)]=%.*lf        <= %.*lf\nA类不确定度:\nuA=δ/√(n)=%.*lf        <= %.*lf\n",max, aver, max+4, aver, max, uA, max+4, uA, max, uT, max+4, uT);
+    printf("平均值:\n1/Xa=n*(ΣXn)=%.*lf        <= %.*lf\n标准差:\nδ=√[Σ(Xn-Xa)^2/(n-1)]=%.*lf        <= %.*lf\nA类不确定度:\nuA=tp*[δ/√(n)]=%.*lf        <= %.*lf\n",max, aver, max+4, aver, max, uA, max+4, uA, max, uT, max+4, uT);
     if(uB != 0){
         u = sqrt(uT*uT+uB*uB);
         printf("B类不确定度:\nuB=%.*lf        <= %.*lf\n合成不确定度:\nn=√(uA^2+uB^2)=%.*lf        <= %.*lf\n",max, uB, max+4, uB, max, u, max+4, u);
