@@ -1,5 +1,5 @@
 clear ; close all; clc;
-A=input('ÊäÈëÊı¾İ£º¸ñÊ½[1,2,3,4,...]\n');
+A=input('è¾“å…¥æ•°æ®ï¼šæ ¼å¼[1,2,3,4,...]\n');
 percentage_A=[...
     1.32, 1.20, 1.14, 1.11, 1.09, 1.08, 1.07, 1.06, 1.00;...
     2.92, 2.35, 2.13, 2.02, 1.94, 1.86, 1.83, 1.76, 1.65;...
@@ -15,19 +15,19 @@ percentage_B(:,2)=percentage_B(:,2)/(3^0.5);
 A_mean=mean(A,2);
 Ua=std(A,0,2)/sqrt(length(A));
 Da=Ua*percentage_A(:,min(length(A)-2,9));
-tool_d=input('ÊäÈëÒÇÆ÷Îó²î»ò0\n');
-cal_d=input('»úĞµÒÇ±íÊäÈë×îĞ¡·Ö¶È£¬Êı×ÖÒÇ±íÊäÈë0\n');
+tool_d=input('è¾“å…¥ä»ªå™¨è¯¯å·®æˆ–0\n');
+cal_d=input('æœºæ¢°ä»ªè¡¨è¾“å…¥æœ€å°åˆ†åº¦ï¼Œæ•°å­—ä»ªè¡¨è¾“å…¥0\n');
 Ub=(tool_d^2+(cal_d/2)^2)^0.5;
-B_type=input('ÕıÌ¬·Ö²¼ÊäÈë1£¬¾ùÔÈ·Ö²¼ÊäÈë2\n');
+B_type=input('æ­£æ€åˆ†å¸ƒè¾“å…¥1ï¼Œå‡åŒ€åˆ†å¸ƒè¾“å…¥2\n');
 Db=Ub*percentage_B(:,B_type);
 Up=power((power(Da,2)+power(Db,2)),0.5);
 Up(:,4)=Up;
 Up(:,1)=[0.68;0.90;0.95;0.99];Up(:,2)=Da;Up(:,3)=Db;
 clc;
-fprintf('Êı¾İ');
+fprintf('æ•°æ®');
 disp(A);
-fprintf('Æ½¾ùÖµ  %f\n',A_mean);
-fprintf('Æ½¾ùÖµµÄ±ê×¼²îUA  %f\n',Ua);
-fprintf('BÀà²»È·¶¨¶È×î´óÖµUB  %f\n',Ub);
-fprintf('   ¿ÉĞÅ¸ÅÂÊ     AÀà       BÀà    ºÏ³É²»È·¶¨¶È\n');
-disp(Up)
+fprintf('å¹³å‡å€¼  %f\n',A_mean);
+fprintf('å¹³å‡å€¼çš„æ ‡å‡†å·®UA  %f\n',Ua);
+fprintf('Bç±»ä¸ç¡®å®šåº¦æœ€å¤§å€¼UB  %f\n',Ub);
+fprintf('   å¯ä¿¡æ¦‚ç‡     Aç±»       Bç±»    åˆæˆä¸ç¡®å®šåº¦\n');
+disp(Up);
